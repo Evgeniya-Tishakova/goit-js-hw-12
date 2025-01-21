@@ -80,7 +80,6 @@ formEl.addEventListener('submit', async event => {
         }
   
       
-
       const galleryTemplate = data.hits
         .map(el => createGalleryCardTemplate(el))
         .join('');
@@ -89,6 +88,7 @@ formEl.addEventListener('submit', async event => {
       loadBtn.style.display = 'inline-block';
         checkTotal(data.totalHits);
         scrollDown();
+
   } catch (err) {
 console.log(err)
     iziToast.error({
@@ -102,6 +102,8 @@ console.log(err)
     loader.style.display = 'none';
 
   });
+
+//============кнопка Load more, подія click==============//
 
 
 loadBtn.addEventListener('click', async (event) => {
@@ -140,6 +142,7 @@ loadBtn.addEventListener('click', async (event) => {
       loadBtn.style.display = 'inline-block';
       checkTotal(data.totalHits);
       scrollDown();
+
   } catch (err) {
 
     iziToast.error({
@@ -149,10 +152,10 @@ loadBtn.addEventListener('click', async (event) => {
     loadBtn.style.display = 'none';
   } 
   
-
     loader.style.display = 'none';
   })
 
+  //========перевірка кінця колекціі===========//
  
   function checkTotal(total) {
     if (page * 15 >= total) {
@@ -163,6 +166,7 @@ loadBtn.addEventListener('click', async (event) => {
       });
     }
   }
+//========= прокрутка сторінки =================//
 
   function scrollDown() {
     let cardHeight = document.querySelector('.gallery-card').getBoundingClientRect().height;
